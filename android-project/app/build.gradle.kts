@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.firetv.streamdeck"
-    compileSdk = 35
+    compileSdk = 34 e targetSdk = 34
 
     defaultConfig {
         applicationId = "com.firetv.streamdeck"
