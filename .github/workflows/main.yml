@@ -20,20 +20,21 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Setup Gradle
+      - name: Setup Gradle 8.9
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.9'
+          build-root-directory: android-project
 
-      - name: Compilazione APK con Gradle
+      - name: Compila APK Debug con Gradle
         run: |
           cd android-project
-          gradle assembleDebug --stacktrace
+          gradle assembleDebug --stacktrace --no-daemon
 
-      - name: Carica APK Scaricabile
+      - name: Carica APK come Artefatto Scaricabile
         uses: actions/upload-artifact@v4
         with:
           name: FireTvDeck-app-debug
-          path: "**/build/outputs/apk/debug/*.apk"
+          path: |
+            **/build/outputs/apk/debug/*.apk
           retention-days: 14
